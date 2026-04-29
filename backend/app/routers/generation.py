@@ -18,14 +18,15 @@ def text_to_image(payload: GenerateRequest) -> GenerationResult:
 
 
 @router.post("/image-to-image")
-def image_to_image(prompt: str = Form(...), image: UploadFile = File(...)) -> dict:
+def image_to_image(prompt: str = Form(...), image: UploadFile = File(...), style: str = Form("modern")) -> dict:
     generation_id = str(uuid4())
     result = {
         "id": generation_id,
-        "message": "Mock image-to-image completed. Plug in ControlNet next.",
+        "message": "Week 5-6 placeholder: ControlNet image-to-image not yet enabled.",
         "filename": image.filename,
         "content_type": image.content_type,
         "prompt": prompt,
+        "style": style,
         "image_url": f"/static/generated/{generation_id}.png",
     }
     history_store.add(settings.default_user_id, result)
